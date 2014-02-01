@@ -12,6 +12,11 @@ no imports
 api's dynamically retrieved
 can be used as shellcode to achieve runPE mechanism
 doesn't support relocation directory in PE header file as of yet
+
+
+compiled with visual studion 2012
+used /nostdlib
+WinMainCRTStartup defaulted to 0x401000
 */
 
 
