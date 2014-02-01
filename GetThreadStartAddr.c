@@ -2,7 +2,8 @@
 generic way to detect Actual Thread OEP iterate all seh handlers till we reach 0xffffffff
 note the address at which -1 or last handler's address is located and label this temp.
 add 0x30 to  temp, and simultaneously add 0x18 to temp.
-they both will be equal to each other and point to start address in normal circumstances.
+they both will be equal to each other and point to start address in normal circumstances under windows xp and +.
+in some flavours of windows xp 0x18 will point to OEP of thread but 0x30 will be out of bounds.
 */
 #include<windows.h>
 DWORD GetThreadStartAddress(HANDLE hThread)
@@ -45,12 +46,17 @@ DWORD GetThreadStartAddress(HANDLE hThread)
 	temp2=0;
 	else
 	{
-		ReadProcessMemory(open,temp2+0x30,&temp,4,&pd);
-		ReadProcessMemory(open,temp2+0x18,&temp3,4,&pd);
+		temp=0;
+		temp3=0;
+		ReadProcessMemory(open,temp2+0x18,&temp,4,&pd);
+		ReadProcessMemory(open,temp2+0x30,&temp3,4,&pd);
 	}
 	ResumeThread(hThread);
-	if(temp == temp3)
-	return temp;
+	/*  experimental
+	if(temp == temp3) 	
+	return temp;		
 	else
-	return 0;
+	return temp;
+	*/
+	return temp;
 }
