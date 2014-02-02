@@ -68,8 +68,8 @@ back:
 
 
 		jmp dword ptr fs:[0xc0]		;can replace this with far jump to X86SwitchTo64BitMode
-									;far jmp will always be in this byte sequence -> EA 1E 27 XX 74 33 00 
-									;with XX being ASLR random, rest constant.
+									;far jmp will always be in this byte sequence -> EA 1E 27 XX 7X 33 00 
+									;with XX 7X being ASLR random, rest constant.
 next:
 		call back
 
