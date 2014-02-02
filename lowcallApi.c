@@ -37,15 +37,15 @@ __declspec (naked) DWORD x86ApiCallBySysNo( DWORD no, DWORD no_of_params , ...)
 		shl ebx,2					;multiply no of params with 4 for stack boundary
 		push ecx					;push return address back
 		jmp last					;jmp forward
-		back:						;now stack top is return back after sysenter and esp+4 is return address of function
+back:								;now stack top is return back after sysenter and esp+4 is return address of function
 		mov edx,esp					;put data ptr in esp and sysclal in eax
 		sysenter					;stub for api call returning to [esp]
-		last:						
+last:						
 		call back					;jmp to back: only to push next eip
 		nop							;jump here after sysenter with unset stack
 		pop ecx						;ebx holds return address
 		add esp,ebx					;align stack before this function call wa even setup
-		jmp ecx						jmp to return address preserving stack as if api never got called
+		jmp ecx						;jmp to return address preserving stack as if api never got called
 	}
 }
 
@@ -62,11 +62,11 @@ __declspec (naked) DWORD x64ApiCallBySysNo( DWORD no , DWORD no_of_params , ...)
 		shl ebx,2					;multiply no of params with 4 for stack boundary
 		push ecx					;push return address back
 		jmp last					;jmp forward
-		back:						;now stack top is return back after sysenter and esp+4 is return address of function
-		lea edx,dword [esp+4]
+back:								;now stack top is return back after sysenter and esp+4 is return address of function
+		lea edx,dword ptr ss:[esp+4]
 		xor ecx,ecx
-		jmp fs:[0xc0]
-		last:						
+		jmp dword ptr fs:[0xc0]
+last:						
 		call back					;jmp to back: only to push next eip
 		add esp,4							;jump here after sysenter with unset stack
 		pop ecx						;ebx holds return address
