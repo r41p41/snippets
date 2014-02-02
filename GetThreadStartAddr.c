@@ -6,7 +6,7 @@ they both will be equal to each other and point to start address in normal circu
 in some flavours of windows xp 0x18 will point to OEP of thread but 0x30 will be out of bounds.
 */
 #include<windows.h>
-DWORD GetThreadStartAddress(HANDLE hThread)
+DWORD GetThreadStartAddress(HANDLE hThread,HANDLE hProcess)
 {
 	typedef struct _THREAD_BASIC_INFORMATION
 	{
@@ -44,8 +44,8 @@ DWORD GetThreadStartAddress(HANDLE hThread)
 	}
 	temp=0;
 	temp3=0;
-	ReadProcessMemory(open,temp2+0x18,&temp,4,&pd);
-	ReadProcessMemory(open,temp2+0x30,&temp3,4,&pd);
+	ReadProcessMemory(hProcess,temp2+0x18,&temp,4,&pd);
+	ReadProcessMemory(hProcess,temp2+0x30,&temp3,4,&pd);
 	/*  experimental
 	if(temp == temp3) 	
 	return temp;		
