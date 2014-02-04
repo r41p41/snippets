@@ -6,7 +6,7 @@ depending upon injected process
 	-> google chrome	  //all versions HTTPS
 	-> mozilla firefox    //all versions HTTPS
 their x86 version functions would be hooked to grab forms.
-hooked(0 functionwill be called prior to calling respective functions
+hooked() function will be called prior to calling respective functions
 
 
 compiled in visual studio 2012

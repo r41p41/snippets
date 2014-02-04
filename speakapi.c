@@ -41,10 +41,10 @@ speakapi(LPWSTR text,int rate)
     FARPROC addr;
     __asm(".intel_syntax noprefix");
     __asm("mov eax,_pVoice");
-    __asm("mov eax,[eax]");
-    __asm("mov ebx,[eax+0x70]");
+    __asm("mov eax,[eax]");						//object's this pointer on top of stack
+    __asm("mov ebx,[eax+0x70]");				//set rate api at vtable's 0x70 offset
     __asm("mov _setrate,ebx");
-    __asm("mov eax,[eax+0x50]");
+    __asm("mov eax,[eax+0x50]");				//speak api at vtable's 0x50 offset, more offsets for pause and resume in newsreader project
     __asm("mov _speak,eax");
     __asm(".att_syntax");
     addr=(FARPROC)setrate;
