@@ -1,3 +1,18 @@
+;gpr is a low level procedure to find direct address of any API
+;using its name and the name of dll in whih its present
+;this technique can be used for import masking and created from scratch
+;can be used to find API address and then call it directly without putting
+;any api in import section of PE
+
+;to be used in shellcode development for dynamically locating
+;address of api's
+;for better security it handles named hash of api
+;and dll baseaddress
+
+;usage in x86 shellcodes
+
+
+
 [BITS 32]
 
 
