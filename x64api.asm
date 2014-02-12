@@ -78,8 +78,8 @@ add rax,rbx
 jmp end
 
 again:
-inc rcx
-cmp rcx,[rax+0x18]
+inc ecx
+cmp ecx,[rax+0x18]
 jne loop_through_AON
 xor rax,rax
 end:
