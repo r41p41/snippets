@@ -31,7 +31,7 @@ xor edi,edi
 rerun:
 mov eax,[esp+0x4]
 xor ebx,ebx
-add bx,[eax+0x3c]
+add ebx,[eax+0x3c]
 add eax,ebx 		;eax= address of "PE"
 xor bx,bx
 add eax,0x78
