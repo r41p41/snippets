@@ -19,9 +19,9 @@ from a 32bit program
 	
 	
 uses:
-detect ring3 rootkits
-detect ring3 sandboxes
-no need for usermode unhooking
+break ring3 rootkits
+break ring3 sandboxes
+bypasses all usermode detection tools which rely on ring3 hooks
 */
 
 __declspec (naked) DWORD x86ApiCallBySysNo( DWORD no,  ...)
@@ -48,11 +48,10 @@ last:
 	}
 }
 
-__declspec (naked) DWORD x64ApiCallBySysNo( DWORD no , DWORD no_of_params , ...)
+__declspec (naked) DWORD x64ApiCallBySysNo( DWORD no , ...)
 {
 //first parameter is SysCall no
-//second param is no of parameters required for this api
-//third param onwards are normal api arguments
+//second param onwards are normal api arguments
 //no need for epilogue cleanup or prologue setup
 //leave stack as it was so VS can handle stack alignment on its own
 
