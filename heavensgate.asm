@@ -1,7 +1,7 @@
 ;Program for executing 64bit code in a 32bit WOW64 Process
 ;uses Far jump at selector 33h segment for transition
 ;x86tox64 subroutine: migrate from 32bit code to 64bit code
-;[esp] takes address of code to be executed as 64bit instructions
+;[esp+4] takes address of code to be executed as 64bit instructions
 ;points to note
 ; [*]	only ntdll x64 will be available to 64bit code.
 ; [*]	kernel32 cannot be loaded due to base address relocation issues.
@@ -25,7 +25,9 @@ xor eax,eax
 ret											;return 0 if we are in 32bit OS
 
 later:
+pop eax
 pop ecx										;ecx contains code to be executed as 64bit instructions
+push eax
 jmp trampoline
 back:
 pop ebx										;ebx contains offset to far jump
