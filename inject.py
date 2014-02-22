@@ -1,4 +1,4 @@
-#First parameter is path for x86 assembly opcodes binary file to be injected
+#First parameter is path for binary file containing instructions to be injected
 #Second parameter is Process Identifier for process to be injected to
 
 import binascii
