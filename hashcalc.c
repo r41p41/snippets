@@ -3,6 +3,7 @@ clc hashes for api name for x86apiheet
 names must be case sensitive
 usage of compiler flags -s -nostdlib -lmsvcrt
 compiled with mingw gcc
+for 64bit code change r32 to r64.
 */
 
 
