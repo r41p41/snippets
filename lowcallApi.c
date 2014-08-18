@@ -44,7 +44,7 @@ back:								;now stack top is return back after sysenter and esp+4 is return ad
 		
 last:						
 		call back					;jmp to back: only to push next eip
-		jmp dword ptr ss:[esp]		;visual studio will add epilogue to clean up stack after subroutine returns back with stack pointer being intact
+		jmp dword ptr ss:[esp]				;visual studio will add epilogue to clean up stack after subroutine returns back with stack pointer being intact
 	}
 }
 
@@ -62,17 +62,14 @@ __declspec (naked) DWORD x64ApiCallBySysNo( DWORD no , ...)
 		push ecx					;push return address back
 		xor ecx,ecx
 		lea edx,dword ptr ss:[esp+4]
-		jmp next
-back:
 
 
-		jmp dword ptr fs:[0xc0]		;can replace this with far jump to X86SwitchTo64BitMode
-									;far jmp will always be in this byte sequence -> EA 1E 27 XX 7X 33 00 
-									;with XX 7X being ASLR random, rest constant.
-next:
-		call back
+		call dword ptr fs:[0xc0]			;can replace this with far jump to X86SwitchTo64BitMode
+								;far jmp will always be in this byte sequence -> EA 1E 27 XX 7X 33 00 
+								;with XX 7X being ASLR random, rest constant.
+
 
 		add esp,4					;jump here after api call with unset stack, add esp,4 puts stack in original position as it entered this function
-		jmp dword ptr ss:[esp]		;since stack is in original position and esp points to return address jmp [esp] will serve as perfect trampoline
+		jmp dword ptr ss:[esp]				;since stack is in original position and esp points to return address jmp [esp] will serve as perfect trampoline
 	}
 }
