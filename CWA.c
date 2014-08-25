@@ -5,8 +5,8 @@ where n is the number of param required for api to be called.
 CWA can be used to call any API and is written from scratch to ensure maximum compatibility
 optimized for visual studio 2012
 first two parameters provide 
+hash of apiname
 hash of dllname
-hash of ApiName
 next n parameters are in same sequence as youwould call them
 This offers a clean cut api call rather than calling tacky and time consuming import table
 
