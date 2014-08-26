@@ -25,7 +25,6 @@ from a 32bit program
 		-They won't have Syscall no. since Eax is Volatile.
 		-damage might have already been done.
 	
-	
 uses:
 break ring3 rootkits
 break ring3 sandboxes
