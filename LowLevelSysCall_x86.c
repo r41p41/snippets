@@ -65,4 +65,4 @@ later:
 									;when function is returning stack has 2 params+1 return address hence jmp [esp] and not ret.
 									;it will be patched after stdcall clears up stack.
 	}
-} 
+}
