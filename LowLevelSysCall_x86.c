@@ -29,6 +29,8 @@ uses:
 break ring3 rootkits
 break ring3 sandboxes
 bypasses all usermode detection tools which rely on ring3 hooks
+To dynamically Find SysCall NO from Name, use GetSysCallNo_FromName.c in this same repo.
+
 
 fallback:
 race condition when KiFastSystemCallRet is hooked (in user mode) however it is unlikely.
