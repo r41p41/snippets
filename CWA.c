@@ -117,7 +117,7 @@ l1:
 		mov esi,ecx
 		mov esi,[esi+28h]		;esi contains unicode string
 		cmp esi,0
-		jz last1
+		jz exit1
 		xor ebx,ebx
 		xor eax,eax
 genhash1:
@@ -142,9 +142,10 @@ late:
 l3:
 		mov eax,ecx
 		mov eax,[eax+10h]
-		retn  4
-last1:
-		mov eax,0
+		jmp exit2
+exit1:
+		xor eax,eax
+exit2:
 		retn 4
 	}
 }
