@@ -20,7 +20,8 @@ DWORD GetSysCallNo(char *SysCallName)
 	This is to ensure that even if SysCall is tampered with or hooked or detoured
 	we will get a proper Syscall No
 	
-	It can be used in x86 as well as x64 environments,
+	Logic can be used in x86 as well as x64 environments,
+	however current code only gets x86 and WOW64 syscall nos
 	
 	Note: you will get extra junk Api's which get considered as syscall because
 	of this trashy method.
