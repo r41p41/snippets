@@ -70,7 +70,7 @@ back:
 		add edi,ebx
 		add ecx,4
 		add eax,2
-		cmp word ptr ds:[edi],0x744E
+		cmp word ptr ds:[edi],0x775A
 		jne continue_last
 		push ebx
 		mov ebx,[ebx+0x3c]
