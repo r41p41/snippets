@@ -1,14 +1,36 @@
-#include<windows.h>
-#include<stdio.h>
+/*
+	to grab syscall no from ntdll, from its string
+	example:
+	GetSysCallNo("ZwTerminateProcess");
+	returns SysCallNo as per ntdll
+	
+	Since visual studio is a bitch to work with, when coding 64bit asm mixed with C.
+	Its compiled with x86_64-w64-mingw32 without optimizations
+	switches for smaller binary and easy to read in debugger
+	-nostdlib -s
+	
+	working:
+	list all exports of ntdll.dll
+	if first two characters of api offset are Zw,	//fix from Nt to Zw Switch because of NtdllDefWin... apis
+	then calculate address by walking EAT
+	and place that address in a list.
+	After list is populated, sort them in ascending order of their addresses.
+	starting address is syscall 0 and so on we can calculate any syscall NO
+	from just its address.
+	
+	This is to ensure that even if SysCall is tampered with or hooked or detoured
+	we will get a proper Syscall No, without reading ntdll from disk.
+	
+	Logic can be used in x86 as well as x64 environments,
+	however current code only gets x64 syscall nos
+	
+	Note: if you will get extra junk Api's which get considered as syscall because
+	of this trashy method, kindly report so i can change the algorithm.
+	Dirty hack, thus very little error checking
+	
+*/
 #define a_start __asm(".intel_syntax noprefix");__asm(
 #define a_end );__asm(".att_syntax");
-DWORD64 GetSysCallNo(char *SysCallName);
-int WinMainCRTStartup()
-{
-	char ZwTerminateProcess[]= {'Z','w','C','l','o','s','e',0x00};
-	DWORD64 no=(DWORD64)GetSysCallNo(ZwTerminateProcess);
-	return no;
-}
 DWORD64 gethash(char *name)
 {
 	a_start
