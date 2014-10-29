@@ -14,7 +14,7 @@ DWORD GetSysCallNo(char *SysCallName)
 	then calculate address by walking EAT
 	and place that address in a list.
 	After list is populated, sort them in ascending order of their addresses.
-	starting address is syscall 0 and so on we can calculate any syscall NO
+	starting address is syscall 1 and so on we can calculate any syscall NO
 	from just its address.
 	
 	This is to ensure that even if SysCall is tampered with or hooked or detoured
