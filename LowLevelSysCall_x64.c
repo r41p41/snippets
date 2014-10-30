@@ -34,7 +34,7 @@ Ugly Code
 #define a_end );__asm(".att_syntax");
 DWORD64 x64ApiCallBySysNo(DWORD syscallNo,...)
 {
-/* Prologue code will put top 4 stack entries with rcx,rdx,r8,r9 respectively putting our syscallNo at rsp+0x10
+// Prologue code will put top 4 stack entries with rcx,rdx,r8,r9 respectively putting our syscallNo at rsp+0x10
 	a_start                               //prologue
 	"mov rax,[rsp]\n"                     //return address into rax
 	"add rsp,8\n"                         //rsp points rbp which was put to rsp+8 during prologue
