@@ -149,6 +149,25 @@ exit2:
 		retn 4
 	}
 }
+__declspec (naked) DWORD hashcalc(char *string)
+{
+	__asm
+	{
+		mov esi,string
+		xor ecx,ecx
+prev:
+		xor eax,eax
+		lodsb
+		test al,al
+		jz next
+		ror ecx,0xd
+		add ecx,eax
+		jmp prev
+next:
+		mov eax,ecx
+		ret
+	}
+}
 __declspec (naked) DWORD CWA(...)
 {
 	__asm
