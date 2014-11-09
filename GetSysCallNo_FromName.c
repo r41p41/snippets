@@ -48,7 +48,7 @@ DWORD GetSysCallNo(char *SysCallName)
 		mov esi,[ecx+0x18]
 		mov TotalNames,esi
 	}
-	Arr = (DWORD*)VirtualAlloc(0,TotalNames*4,0x3000,0x40);
+	Arr = (DWORD*)CWA(0x91afca54,0x8fecd63f,0,TotalNames*4,0x3000,0x40);	//virtualalloc from kernel32
 	__asm
 	{
 		mov eax,ntdll
