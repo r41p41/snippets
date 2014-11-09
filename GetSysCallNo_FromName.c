@@ -1,3 +1,4 @@
+#include "CWA.c"
 DWORD GetSysCallNo(char *SysCallName)
 {
 	
@@ -28,8 +29,9 @@ DWORD GetSysCallNo(char *SysCallName)
 	No Error checking, do it yourself
 	*/
 	
-	DWORD ntdll = (DWORD)GetModuleHandle(L"ntdll");
-	DWORD SysCallAddress = (DWORD)GetProcAddress((HMODULE)ntdll,SysCallName);
+	DWORD ntdll = getdll(0xcef6e822);				 //hash for ntdll as per CWA.c
+	DWORD SysCallAddress = gpr(ntdll,hashcalc(SysCallName));	//address of api from its name
+	
 	DWORD *Arr,TotalNames;
 	DWORD temp,i=-1,j,k;
 	__asm
