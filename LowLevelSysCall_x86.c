@@ -47,12 +47,6 @@ __declspec (naked) DWORD x86ApiCallBySysNo( DWORD no,  ...)
 		jmp later					;add another return address on top of stack pointing to last instruction
 back:
 		mov edx,esp					;edx contains data of syscall, eax contains syscall no
-		mov edi,0x7ffe0300			;copy shareduserdata in edi
-		mov edi,[edi]				;get KiFastSystemCall in edi
-		add edi,4					;Calculate KiFastSystemCallRet
-		cmp byte ptr [edi],0xc3		;compare if hooked
-		je final_call				;if not hooked execute sysenter
-		mov byte ptr [edi],0xc3		;if hooked place 0xc3 and patch
 final_call:
 		_emit 0x0f					;visual studio 2012 won't recognize sysenter as a inline asm instruction so emit is used
 		_emit 0x34
