@@ -34,3 +34,34 @@ WinMainCRTStartup()
 	
 	printf("0x%0.2x = hash value",hash);
 }
+/* 64bit
+#include<windows.h>
+#include<stdio.h>
+
+DWORD64 genhash_64(BYTE *arr);
+int WinMainCRTStartup()
+{
+	BYTE arr[1024];
+	gets(arr);
+	printf("0x%x%x = hash value",genhash_64(arr)>>0x20,genhash_64(arr));
+	return 0;
+}
+
+DWORD64 genhash_64(BYTE *arr)
+{
+	__asm(".intel_syntax noprefix");
+	__asm("mov rsi,rcx");
+	__asm("xor rcx,rcx");
+	__asm("prev:");
+	__asm("xor rax,rax");
+	__asm("lodsb");
+	__asm("test al,al");
+	__asm("jz next");
+	__asm("ror rcx,0xd");
+	__asm("add rcx,rax");
+	__asm("jmp prev");
+	__asm("next:");
+	__asm("mov rax,rcx");
+	__asm(".att_syntax");
+}
+*/
