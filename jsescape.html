@@ -1,0 +1,24 @@
+<html>
+<head>
+<script language="JavaScript" type="text/javascript">
+function ConvertShellCode(strdata)
+{
+    var s = new String(strdata);
+    s = s.replace(/[\s\\x]/g, '');
+    var strcode = '';
+
+    for(var idx=0; idx<s.length; idx+=4)
+        strcode += "%u" + s.substr(idx+2,2) + s.substr(idx+0,2);
+
+    document.forms.ShellToJavascript.decode.value = strcode;
+}
+</script>
+</head>
+<body>
+<form name="ShellToJavascript" method="post">
+<textarea rows="10" cols="100" name="encode"></textarea><br />
+<textarea rows="10" cols="100" name="decode"></textarea><br />
+<input type="button" value="Encode" onclick="return ConvertShellCode(document.ShellToJavascript.encode.value)" />
+</form>
+</body>
+</html>
