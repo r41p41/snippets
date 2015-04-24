@@ -6,11 +6,11 @@ package
 	import flash.geom.*;
 	import flash.external.*;
 	import flash.events.*;
-	private var spray:Array;
-	private var size:uint;
-	private var alignment:uint;
 	public class Main extends Sprite
   	{
+  		private var spray:Array;
+		private var size:uint;
+		private var alignment:uint;
 		public function AsSpray():void
     		{
 			var block:Vector.<Object> = null;
