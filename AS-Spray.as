@@ -1,21 +1,22 @@
 package
-{    
+{
 	import flash.display.*;
 	import flash.text.*;
 	import flash.system.*;
 	import flash.geom.*;
 	import flash.external.*;
 	import flash.events.*;
-	
 	public class Main extends Sprite
-	{
-		private var spray:Array
+  	{
+  		private var spray:Array;
+		private var size:uint;
+		private var alignment:uint;
 		public function AsSpray():void
-		{
+    		{
 			var block:Vector.<Object> = null;
-			var size:uint = 100000;
-			var alignment:uint = 0x1000;
 			var index:uint = 0;
+			size = 100000;
+			alignment = 0x1000;
 			spray = new Array();
 			for(index = 0; index < size; index++)
 			{
@@ -36,5 +37,5 @@ package
 			ExternalInterface.call("check","Vector Spray done");
 			ExternalInterface.addCallback("Corruption",Leak);
 		}
-	}
+  	}
 }
