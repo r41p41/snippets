@@ -8,10 +8,10 @@ package
 	import flash.events.*;
 	
 	public class Main extends Sprite
-  {
+	{
 		private var spray:Array
-    public function AsSpray():void
-    {
+		public function AsSpray():void
+		{
 			var block:Vector.<Object> = null;
 			var size:uint = 100000;
 			var alignment:uint = 0x1000;
@@ -36,5 +36,5 @@ package
 			ExternalInterface.call("check","Vector Spray done");
 			ExternalInterface.addCallback("Corruption",Leak);
 		}
-  }
+	}
 }
