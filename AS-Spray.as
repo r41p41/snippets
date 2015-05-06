@@ -12,7 +12,7 @@ package
 		private var size:uint;
 		private var alignment:uint;
 		public function AsSpray():void
-    		{
+		{
 			var block:Vector.<Object> = null;
 			var index:uint = 0;
 			size = 100000;
@@ -37,5 +37,5 @@ package
 			ExternalInterface.call("check","Vector Spray done");
 			ExternalInterface.addCallback("Corruption",Leak);
 		}
-  	}
+	}
 }
