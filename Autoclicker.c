@@ -54,10 +54,10 @@ char blacklist[][100] = {
 };
 void ClickMouse(x,y)
 {
-	  INPUT buffer;
+    INPUT buffer;
     buffer.type = INPUT_MOUSE;
     buffer.mi.dx = (x)* (0xFFFF / len);
-	  buffer.mi.dy = (y)* (0xFFFF / wid);
+    buffer.mi.dy = (y)* (0xFFFF / wid);
     buffer.mi.mouseData = 0;
     buffer.mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE;
     buffer.mi.time = 0;
@@ -107,7 +107,7 @@ BOOL CALLBACK Child_Callback(HWND ChildWindow , LPARAM param)
             SetForegroundWindow(ChildWindow);
             SendMessage(ChildWindow, BM_CLICK , 0 , 0);
 						
-						//RECT rect;
+	    //RECT rect;
             //GetWindowRect(ChildWindow,&rect);
             //ClickMouse(rect.left+15,rect.top+15);
             break;
@@ -117,7 +117,7 @@ BOOL CALLBACK Child_Callback(HWND ChildWindow , LPARAM param)
 }
 BOOL CALLBACK Parent_Callback(HWND Parent_Window , LPARAM param)
 {
-		EnumChildWindows(Parent_Window,(WNDENUMPROC)Child_Callback,param);
+    EnumChildWindows(Parent_Window,(WNDENUMPROC)Child_Callback,param);
     return 1;
 }
  
