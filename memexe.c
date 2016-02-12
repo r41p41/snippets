@@ -4,6 +4,7 @@ PE injection and execution via
 	->Hollowing it out by removing its image
 	->Planting another PE file's image in that space
 	->Align Sections
+	->Patch PEB and EAX
 	->Resume the execution so another exe takes place of executed PE file.
 	
 	
