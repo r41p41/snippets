@@ -80,9 +80,8 @@ int main(int argc,char **argv)
 	unsigned int targetCRC;
 	unsigned int length = strlen(argv[2]);
 	unsigned int CheckSum;
-	unsigned char *temp;
 
-	targetCRC = strtol( argv[1] + 2 , 0 , 16);
+	targetCRC = strtoul( argv[1] , 0 , 16);
 	//printf("targetCRC: 0x%x\n",targetCRC);
 	CheckSum = CRCCompute( (unsigned char *) argv[2],length);
 	//printf("buff entered:\n");
