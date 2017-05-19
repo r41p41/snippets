@@ -46,7 +46,9 @@ int main(int argc, char * argv[])
 	if (PIN_Init(argc, argv)) 
 		return Usage();
 	
-	fptr = fopen("trace.log","wb+");
+	char log[1024];
+	sprintf(log,"trace_%d.log",PIN_GetPid());
+	fptr = fopen(log,"wb+");
 	INS_AddInstrumentFunction(Instruction, 0);
 	IMG_AddInstrumentFunction(ImageLoad, 0);
 	PIN_AddFollowChildProcessFunction(ChildProcess,0);
